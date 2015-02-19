@@ -1,0 +1,10 @@
+--- origsrc/fcgi-2.4.0/libfcgi/fcgio.cpp	2002-02-24 15:12:22.000000000 -0500
++++ src/fcgi-2.4.0/libfcgi/fcgio.cpp	2015-02-16 18:45:47.678273300 -0500
+@@ -24,6 +24,7 @@
+ 
+ #include <limits.h>
+ #include "fcgio.h"
++#include <cstdio>
+ 
+ using std::streambuf;
+ using std::istream;

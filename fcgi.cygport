@@ -1,0 +1,54 @@
+NAME="fcgi"
+VERSION=2.4.0
+RELEASE=3
+
+HOMEPAGE="http://fastcgi.com/"
+
+SUMMARY="FastCGI: A high-performance web-server interface"
+DESCRIPTION="FastCGI is a fast, open, and secure Web server interface that solves
+the performance problems inherent in CGI, without introducing the
+overhead and complexity of proprietary APIs."
+
+SRC_URI="http://fastcgi.com/dist/fcgi-${PV}.tar.gz"
+
+MAKEOPTS+=" -j1"
+
+DOCS="LICENSE.TERMS"
+HTMLDOCS="doc/*.html doc/*.htm doc/*.gif"
+
+PKG_NAMES="fcgi lib${PN}0 lib${PN}-devel"
+
+fcgi_CONTENTS="usr/bin/*.exe usr/lib/fcgi/examples usr/share"
+fcgi_CATEGORY="Web"
+
+
+libfcgi0_CONTENTS="usr/bin/cygfcgi*-0.dll"
+libfcgi0_CATEGORY="Libs Web"
+
+libfcgi_devel_CONTENTS="--exclude=usr/lib/fcgi/examples usr/lib usr/include"
+libfcgi_devel_CATEGORY="Devel Web"
+
+PATCH_URI="2.4.0-fcgio.patch"
+PATCH_URI+=" 2.4.0-reini.patch"	# Formerly part of 2.4.0-2.src.patch
+
+DIFF_EXCLUDES="fcgi_config.h"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	exeinto /usr/lib/fcgi/examples
+	doexe examples/*.exe
+
+	cd ${S}
+	docinto examples
+	dodoc examples/*.c examples/*.cpp
+	docinto images
+	dodoc images/*
+	docinto html/fastcgi-prog-guide 
+	dodoc doc/fastcgi-prog-guide/*
+	docinto html/fastcgi-whitepaper 
+	dodoc doc/fastcgi-whitepaper/*
+	doman doc/cgi-fcgi.1
+	doman doc/*.3
+}

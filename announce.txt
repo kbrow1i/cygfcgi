@@ -1,0 +1,12 @@
+The following packages have been updated in the Cygwin distribution:
+
+* fcgi-2.4.0-3
+* libfcgi0-2.4.0-3
+* libfcgi-devel-2.4.0-3
+
+FastCGI is a fast, open, and secure Web server interface that solves the performance problems inherent in CGI, without introducing the overhead and complexity of proprietary APIs.
+
+For 64-bit Cygwin this is the first release of fcgi.  For 32-bit Cygwin this is just a rebuild of 2.4.0-2 with gcc 4.9.2-2.
+
+Ken Brown
+Cygwin's new fcgi maintainer
